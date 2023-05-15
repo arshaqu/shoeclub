@@ -1,0 +1,36 @@
+
+<%- include('../layouts/adminheader.ejs') %>
+
+
+<div class="card-body">
+    <h3 class="card-title">Edit Product</h3>
+
+<form action=""method="post" class="form-group m-2 mt-3">
+    <label>COUPON CODE</label>
+
+<input type="text" class="form-control form-control-lg" name="code" placeholder="Enter Name" value="<%=coupon.code%>" required>
+<br><br>
+<label>DISCOUNT AMOUNT</label>
+
+<input type="text"class="form-control form-control-lg" name="discountType" placeholder="Enter stock" value=<%=coupon.discountAmount%>" required>
+<br><br>
+<label>EXPIRY DATE</label>
+<input type="text"class="form-control form-control-lg" name="date" placeholder="Enter catogery" value="<%=coupon.expiryDate%>"required>
+<br><br>
+<label>Max Cart Amount</label>
+
+<input type="text"class="form-control form-control-lg" name="maxCartAmount" placeholder="Enter quantity" value="<%=coupon.maxCartAmount%>"required>
+<br><br>
+<label>Max Discount Amount</label>
+<input type="text"class="form-control form-control-lg" name="discountAmount" placeholder="Enter quantity" value="<%=coupon.maxDiscountAmount%>"required>
+
+<br><br>
+
+
+<input type="hidden" class="" name="id" value="<%=coupon._id %>">
+<input class="btn btn-block btn-facebook auth-form-btn"  type="submit" value="Update coupon">
+
+</form>
+</div>
+
+<%- include('../layouts/adminfooter.ejs') %>

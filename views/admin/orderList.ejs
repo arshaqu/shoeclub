@@ -1,0 +1,64 @@
+<%-include ('../layouts/adminheader.ejs')%>
+
+<div class="col-lg-10 grid-margin stretch-card" >
+  <div class="card" >
+    <div class="card-body">
+      <h4 class="card-title" >Orders</h4>
+
+       <div class="" style="margin-left: 900px; height: 40px;">
+        <a style="color: white;    background-color: #013757;border-radius: 10px;padding: 10px 20px;" href="/admin/exportOrder">Export Data</a>
+        <a style="color: white;  background-color: #013757;border-radius: 10px;padding: 10px 20px;" href="/admin/exportOrderPDF">Export Data PDF</a>
+      </div>
+      <div class="table-responsive"  style="border-radius: 12px">
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+                <th >ORDER ID</th>
+                      <th >DATE</th>
+                      <th >ADDRESS</th>
+                      <th >AMOUNT</th>
+                      <th >PAYMENT</th>
+                      <th >STATUS</th>
+                      <th >ACTION</th>
+                      <th >VIEW PRODUCT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%
+                  if(orderData.length>0){
+                    for(let i=0;i<orderData.length;i++){
+                        %>
+                        <tr class="text-gray-700 dark:text-gray-400">
+                          <td ><%=orderData[orderData.length-i-1]._id%></td>
+                          <td ><%=orderData[orderData.length-i-1].date.toISOString().substring(0,10)%></td>
+                          <td ><%=orderData[orderData.length-i-1].deliveryAddress%></td>
+
+                          <td ><%=orderData[orderData.length-i-1].totalAmount%></td>
+                          <td>
+                            <%=orderData[orderData.length-i-1].paymentMethod%>
+                          </td>
+                          <td ><%=orderData[orderData.length-i-1].status%></td>
+                          <td>
+                            <a class="btn btn-success" href="/admin/editOrder?id=<%=orderData[orderData.length-i-1]._id%>">Edit</a>
+                         
+                      </td>
+                      <td>
+                        <a class="btn btn-danger" href="/admin/viewproduct?id=<%=orderData[orderData.length-i-1]._id%>">View</a>
+
+                      </td>
+                        </tr>
+                        <%
+                    }
+                  }else{
+                    %>
+                    <p style="color: white;padding: 30px;font-family: Georgia, 'Times New Roman', Times, serif;">Coupon Not Found</p>
+                    <%
+                  }
+                  %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%-include ('../layouts/adminfooter.ejs')%>

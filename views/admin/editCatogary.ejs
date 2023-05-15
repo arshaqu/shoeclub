@@ -1,0 +1,29 @@
+<%- include('../layouts/adminheader.ejs') %>
+
+<div class="col-md-6 grid-margin stretch-card" style="height: 250px; margin: 15px;">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Forms</h4>
+      <form action="" method="post" onsubmit="show()">
+      <div class="form-group">
+        <label>Category</label>
+        <input type="hidden" class="" name="id" value="<%=Catogary._id %>">
+        <input type="text" value="<%=Catogary.categoryName%>" class="form-control form-control-lg " name="categoryName" placeholder="Name">
+      </div>
+
+      <div class="btn-bt">
+        <input type="submit" value="SUBMIT" class="form-control form-control-lg btn btn-primary me-2">
+      </div>
+     
+    </form>
+    </div>
+  </div>
+</div>
+
+<script>
+function show() {
+  toastr.success('Category added successfully');
+}
+</script>
+
+<%- include('../layouts/adminfooter.ejs') %>

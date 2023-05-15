@@ -1,0 +1,164 @@
+<%- include('../layouts/header.ejs') %>
+
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Shopping Cart</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="category.html">Cart</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <!-- <th scope="col">Total</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            products.forEach((product)=>{
+                                %>
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="/adminImages/<%=product.productid.image[0]%>"  alt="acd" width="80px">
+                                        </div>
+                                        <div class="media-body">
+                                            <p><p></p></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                        </div>
+                                        <div class="media-body">
+                                            <p><%=product.productid.product%></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>₹<%=product.productid.Price%></h5>
+                               
+                                </td>
+                                <td>
+                                    <button style="width: 100px;" type="button" class="quantity-right-plus btn"  onclick="changeQuantity('<%=userId%>','<%=product.productid._id%>',1)">+</button>
+
+                                    <div class="product_count">
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="<%=product.count%>" title="Quantity:" class="input-text qty"  min="1" max="100" >
+
+                                    </div>
+                                    <button style="width: 100px;" type="button" class="quantity-left-minus btn" onclick="changeQuantity('<%=userId%>','<%=product.productid._id%>',-1)">-</button>
+
+                                </td>
+                            
+                            </tr>
+                            <%
+                        })
+                            %>
+                            <tr class="bottom_button">
+                                <td>
+                                    <a class="gray_btn" href="#">Update Cart</a>
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="cupon_text d-flex align-items-center">
+                                        <input type="text" placeholder="Coupon Code">
+                                        <a class="primary-btn" href="/addAddress">Apply</a>
+                                        <a class="gray_btn" href="#">Close Coupon</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Subtotal</h5>
+                                </td>
+                                <td>
+                                    <h5>$<%=Total%></h5>
+                                </td>
+                            </tr>
+                            <tr class="shipping_area">
+                                <td>
+
+                                </td>
+                                <td>
+                                   
+                                </td>
+                               
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" href="/shop">Continue Shopping</a>
+                                        <a class="primary-btn" href="/checkout">Proceed to checkout</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+   function changeQuantity (userId,proId,count){
+    $.ajax({
+				url:'/changeProductQuantity',
+				data:{
+					user:userId,
+					product:proId,
+					count:count
+				},
+				method:'post',
+				success:(response)=>{
+				}
+			}).done((data)=>{
+				if(data.success){
+					location.reload();
+
+				}else if(data.check){
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'Out Of Stock!'
+					})
+				}
+			})
+		}
+  
+   
+
+    </script>
+    <!--================End Cart Area =================-->
+<%- include('../layouts/footer.ejs') %>
+
+
+   

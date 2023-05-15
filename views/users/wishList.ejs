@@ -1,0 +1,101 @@
+<%- include('../layouts/header.ejs') %>
+
+
+<section class="banner-area organic-breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+			<div class="col-first">
+				<h1>Wishlist</h1>
+				<nav class="d-flex align-items-center">
+					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+					<a href="category.html">WishList</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+    <!--================Cart Area =================-->
+    <section class="cart_area col-md-12" style="padding: 200px;">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                            wish.forEach((wish)=>{
+                                %>
+                           
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="/adminImages/<%=wish.productId.image[0]%>"  alt="acd" width="80px">
+                                        </div>
+                                        <div class="media-body">
+                                            <p><p></p></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price ms-5">
+                                    <h5><%=wish.productId.product%></h5>
+                               
+                                </td>
+                                <td class="price ms-5">
+                                    <h5>₹<%=wish.productId.Price%></h5>
+                               
+                                </td>
+                                <td>
+                                    <a href="/removeWish?id=<%=wish.productId._id%>" class="genric-btn danger circle arrow">Remove<span class="lnr lnr-arrow-right"></span></a>
+                                    <a href="" onclick="show('<%=wish.productId._id%>')" class="genric-btn primary circle arrow">Add to Cart<span class="lnr lnr-arrow-right"></span></a>
+                                            
+                                       
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                           
+                           
+                            
+                              <%
+                        })
+                        %>
+
+                                   
+                              
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+		function show(id){
+			$.ajax({
+				url:"/addfromwishlist",
+				method:"post",
+				data:{
+					query:id
+				},
+				success:(response)=>{
+					if(response.success){
+						location.href = "/cart";
+					}
+				}
+			})
+		}
+	</script>
+    <!--================End Cart Area =================-->
+<%- include('../layouts/footer.ejs') %>
+
+
+   

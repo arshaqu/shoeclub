@@ -1,0 +1,38 @@
+<%- include ('../layouts/adminheader') %>
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Category List</h4>
+       
+        <div class="table-responsive">
+          <table class="table">
+          
+                <%
+                if(Category.length>0){
+                  for(let i=0;i<Category.length;i++){
+                    %>
+              <tr>
+                <td><%=Category[i].categoryName%></td>
+                <td>
+                    <a href="/admin/editCatogary?id=<%=Category[i]._id%>" class="btn btn-success" href="">
+                      Edit
+                    </a>
+                    <a class="btn btn-danger" href="/admin/deleteCategory?id=<%=Category[i]._id%>">
+                      Delete
+                    </a>
+                  </td>
+                
+              </tr>
+              <%
+          }
+        }
+        %>  
+         
+           
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include ('../layouts/adminfooter') %>

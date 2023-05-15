@@ -1,0 +1,134 @@
+<%-include ('../layouts/adminheader.ejs')%>
+
+<div class="col-lg-10 grid-margin stretch-card" >
+  <div class="card" >
+    <div class="card-body">
+      <h4 class="card-title" >User DeliveryDetails</h4>
+
+
+
+
+    
+      <table class="table table-striped" >
+        <thead>
+          <tr>
+            <th>
+              User Name
+            </th>
+            <th>
+              Date
+            </th>
+            <th>
+              Delivery Address
+            </th>
+            <th>
+              Status
+            </th>
+           
+           
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+          
+            <td>
+              <%=orderData.userName%>
+
+            </td>
+            <td>
+              <%=orderData.date.toISOString().substring(0,10)%>
+  
+              </td>
+            <td>
+            <%=orderData.deliveryAddress%>
+
+            </td>
+           
+            <td>
+              <%=orderData.status%>
+  
+              </td>
+           
+          </tr>
+     
+        </tbody>
+      </table>
+
+
+
+      <div class="space" style="height: 110px;">
+
+      </div>
+
+
+      
+      <h4 class="card-title" >Products Details</h4>
+      <div class="table-responsive"  style="border-radius: 12px">
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+              <th>
+                PRODUCT 
+              </th>
+              <th>
+                NAME 
+              </th>
+              <th>
+                PRICE
+              </th>
+              <th>
+                COUNT
+              </th>
+              
+              <th>
+                CATEGORY
+              </th>
+              <th>
+                QUANTITY
+              </th>
+              
+             
+            </tr>
+          </thead>
+          <tbody>
+            <%
+            productData.forEach((pro)=>{
+                %>
+            <tr>
+              <td class="py-1">
+                <img src="/adminImages/<%=pro.productid.image[0]%>" alt="image"/>
+              
+              </td>
+              <td>
+                <%=pro.productid.product%>
+              </td>
+             
+              <td>
+                <%=pro.productid.Price%>
+              </td>
+             
+              
+              <td>
+                <%=pro.productid.StockQuantity%>
+              </td>
+              
+              <td>
+                <%=pro.productid.Category%>
+              </td>
+              <td>
+                <%=pro.productid.stock%>
+              </td>
+             
+            </tr>
+            <%
+        })
+        %>  
+        
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%-include ('../layouts/adminfooter.ejs')%>

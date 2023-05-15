@@ -1,0 +1,64 @@
+<%- include('../layouts/adminheader.ejs') %>
+
+      <!-- partial -->
+      <div class="container">
+        <div class="col-12 grid-margin stretch-card " style=" margin-top: 10px; border-radius: 8px;box-shadow: 1px 1px 2px 2px; box-sizing: border-box; ">
+          <div class="card">
+            <div class="card-body" style="background-color: rgb(240, 235, 235);">
+              <h4 class="card-title">Forms</h4>
+              <h2 class="AddPro" style="font-weight: 700;">Add Products</h2>
+              <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="exampleInputName1">Product Name</label>
+                  <input type="text" class="form-control" name="Product" id="exampleInputName1" placeholder="Enter The Product Name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword4">Stock</label>
+                  <input type="text" class="form-control"name="Stock" id="exampleInputPassword4" placeholder="In Stock">
+                </div> 
+                <div class="form-group">
+                  <label for="exampleInputEmail3">Price</label>
+                  <input type="number" class="form-control" name="Price" id="exampleInputEmail3" placeholder="Enter The Price">
+                </div>           
+                <div class="form-group">
+                  <label>File upload</label>
+                  <input class="bt" style="height: 28px;width: 228px ; background-color: gray;color: white;" accept="Image/*" type="file" name="Image"  multiple>
+                  
+                </div>
+
+
+                
+                <div class="form-group">
+                  <label for="exampleInputCity1">Catagory</label>
+                  <select name="Category" class="form-control" id="Catagory">
+                     <%
+                     for(let i=0;i<category.length;i++){
+                      %>
+                      <option><%=category[i].categoryName%></option>
+                      <%
+                    }
+                     %>
+                      
+                  </select>
+              </div>
+                  <div class="form-group">
+                      <label for="exampleInputEmail3">Stock Quantity</label>
+                      <input type="text" class="form-control" name="Stockqua" id="exampleInputEmail3" placeholder="Enter The Stock Quantity">
+                    </div>  
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Description</label>
+                      <input type="text" class="form-control" name="Description" id="exampleInputEmail3" placeholder="Enter The Description">
+                    </div>  
+               
+                
+               <input type="submit" value="Submit" class="btn btn-primary me-2">
+                <button class="btn btn-light">Cancel</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    
+        <%- include('../layouts/adminfooter.ejs') %>
+        

@@ -1,0 +1,55 @@
+<%-include ('../layouts/adminheader.ejs')%>
+
+<div class="col-lg-10 grid-margin stretch-card" >
+  <div class="card" >
+    <div class="card-body">
+      <h4 class="card-title" >Orders</h4>
+     
+      <div class="table-responsive"  style="border-radius: 12px">
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+           
+                  <th >HEADER</th>
+                      <th >IMAGE</th>
+                      <th >DISCRIPTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%
+                  if(banner.length>0){
+                    for(let i=0;i<banner.length;i++){
+                        %>
+                        <tr class="text-gray-700 dark:text-gray-400">
+                          <td ><%=banner[i].header%></td>
+                          <td><img src="/adminImages/<%=banner[i].image%>" alt="Banner Image"></td>
+
+                          <td ><%=banner[i].description%></td>
+                    
+                         
+                          <td>
+                            <div>
+                                <button class="btn btn-success" ><a  style="color: antiquewhite;" href="/admin/editBanner?id=<%=banner[i]._id%>">Edit</a></button>
+                                <button class="btn btn-danger" ><a  style="color: antiquewhite;" href="/admin/deleteBanner?id=<%=banner[i]._id%>">Delete</a></button>
+                              </div>
+                      </td>
+                      <!-- <td>
+                        <a class="btn btn-danger" href="/admin/viewproduct?id=<%=banner[banner.length-i-1]._id%>">View</a>
+
+                      </td> -->
+                        </tr>
+                        <%
+                    }
+                  }else{
+                    %>
+                    <p style="color: white;padding: 30px;font-family: Georgia, 'Times New Roman', Times, serif;">banner Not Found</p>
+                    <%
+                  }
+                  %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%-include ('../layouts/adminfooter.ejs')%>

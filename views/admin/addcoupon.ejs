@@ -1,0 +1,147 @@
+<%- include('../layouts/adminheader.ejs') %>
+
+      <!-- partial -->
+      <div class="container ">
+        <div class="col-12grid-margin stretch-card " style=" margin-top: 10px; border-radius: 8px;box-shadow: 1px 1px 2px 2px; box-sizing: border-box; ">
+          <div class="card">
+            <div class="card-body" style="background-color: rgb(240, 235, 235);">
+              <h4 class="card-title">Forms</h4>
+              <h2 class="AddPro" style="font-weight: 700;">Add Coupon</h2>
+              <form action="" method="post">
+               
+
+
+                <div
+                class="form-group"
+              >
+                <label class="block text-sm col-md-12">
+                  <span class="text-gray-700 dark:text-gray-400">Code</span>
+                  <input
+                    class="form-control" 
+                    placeholder="Enter Coupon Code"
+                    id="code"
+                    name="code"
+                    type="text"
+                    required
+                  />
+                  
+                </label>
+                </div>
+
+                
+  
+                <div class="form-group" >
+                <label class="block mt-4 text-sm col-md-12">
+                  <span class="text-gray-700 dark:text-gray-400">
+                    Discount Type
+                  </span>
+                  <select
+                    class="form-control" 
+                    name="discountType"
+                    id="discountType"
+                  >
+                   <option>Fixed</option>
+                   <option>Percentage Type</option>
+                  </select>
+                </label>
+              </div>
+  
+
+              <div class="form-group"  >
+                <label class="block text-sm col-md-12">
+                  <span class="text-gray-700 dark:text-gray-400">Discount Amount</span>
+                  <input
+                    class="form-control"
+                    placeholder="Enter the discount amount"
+                    id="amount"
+                    name="amount"
+                    type="number"
+                    required
+                  />
+                </div>
+                
+                <div class="form-group"  >
+                <label class="block text-sm">
+                  <span class="text-gray-700 dark:text-gray-400">Expiry Date</span>
+                  <input
+                    class="form-control"
+                    id="date"
+                    name="date"
+                    type="date"
+                    required
+                  />
+                  
+                </label>
+              </div>
+
+              <div class="form-group"  >
+                <label class="block text-sm col-md-12">
+                  <span class="text-gray-700 dark:text-gray-400">Max Cart Amount</span>
+                  <input
+                    class=  "form-control"
+                    placeholder="Enter the Cart amount"
+                    id="cartAmount"
+                    name="cartAmount"
+                    type="number"
+                    required
+                  />
+                  
+                </label>
+              </div>
+
+              <div class="form-group"  >
+                <label class="block text-sm col-md-12">
+                  <span class="text-gray-700 dark:text-gray-400 col-md-12">Max Discount Amount</span>
+                  <input
+                    class= "form-control"                  
+                    placeholder="Enter the Discount Amount"
+                    id="discountAmount"
+                    name="discountAmount"
+                    type="number"
+                    required
+                  />
+                  
+                </label>
+              </div>
+
+              <div class="form-group"  >
+                
+                <label class="block text-sm col-md-12">
+                  <span class="text-gray-700 dark:text-gray-400 ">Max Coupons</span>
+                  <input
+                    class= "form-control"                    
+                    placeholder="Enter the count of coupons"
+                    id="couponCount"
+                    name="couponCount"
+                    type="number"
+                    required
+                  />
+                  
+                </label>
+              </div>
+
+  
+                <input
+                    class= "btn btn-primary me-2"
+                    type="submit"
+                    onclick="show()"
+                    value="Submit"
+                  />
+                <%
+                if(typeof message != 'undefined'){
+                  %>
+                  <p id="para" style="color: red;font-family: Georgia, 'Times New Roman', Times, serif;"><%=message%></p>
+                  <%
+                }
+                %>
+              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+    
+        <%- include('../layouts/adminfooter.ejs') %>
+        
+

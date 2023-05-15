@@ -1,0 +1,224 @@
+
+
+<%- include('../layouts/adminheader.ejs') %>
+
+<div class="container pt-4 px-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row g-4" style="color: rgb(111, 102, 102); padding: 20px;">
+        <div class="col-sm-6 col-xl-3">
+          <div class="rounded d-flex align-items-center justify-content-between p-4 bg-light">
+            <i class="fa fa-chart-line fa-3x text-primary"></i>
+            <div class="ms-3">
+              <p class="mb-2">Total Clients</p>
+              <h6 class="mb-0"><%= totalOrder %></h6>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-lg-6 col-xl-3">
+          <div class="rounded d-flex align-items-center justify-content-between p-4 bg-light">
+            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+            <div class="ms-3">
+              <p class="mb-2">Total Sale</p>
+              <h6 class="mb-0">₹<%= total %></h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="rounded d-flex align-items-center justify-content-between p-4 bg-light">
+            <i class="fa fa-chart-area fa-3x text-primary"></i>
+            <div class="ms-3">
+              <p class="mb-2">Total Orders</p>
+              <h6 class="mb-0"><%= totalUser %></h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+          <div class="rounded d-flex align-items-center justify-content-between p-4 bg-light">
+            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+            <div class="ms-3">
+              <p class="mb-2">Total Products</p>
+              <h6 class="mb-0"><%= totalProducts %></h6>
+            </div>
+          </div>
+        </div>   </div>
+              </div>
+            
+      </div>
+
+      <!-- Sales Chart Start -->
+      <div class="card" style="height: 270px; width: 260px; margin-left: 200px;">
+        <div style="width: 300px;"  class="card-body">
+          <div class="chart_data d-flex" >
+            <canvas id="myChart" style="margin-right: 50px;"></canvas>
+            <hr>
+            <div class="myChart d-flex">
+              <canvas style="height: 200px; width: 400px;" id="barChart"></canvas>
+              <input type="hidden" id="input1" value="<%= yearChart[0] %>">
+              <input type="hidden" id="input2" value="<%= yearChart[1] %>">
+              <input type="hidden" id="input3" value="<%= yearChart[2] %>">
+              <input type="hidden" id="input4" value="<%= yearChart[3] %>">
+              <input type="hidden" id="input5" value="<%= yearChart[4] %>">
+              <input type="hidden" id="input6" value="<%= yearChart[5] %>">
+              <input type="hidden" id="input7" value="<%= yearChart[6] %>">
+              <input type="hidden" id="input8" value="<%= yearChart[7] %>">
+              <input type="hidden" id="input9" value="<%= yearChart[8] %>">
+             <input type="hidden" id="input9" value="<%=yearChart[8]%>">
+            <input type="hidden" id="input10" value="<%=yearChart[9]%>">
+             <input type="hidden" id="input11" value="<%=yearChart[10]%>">
+             <input type="hidden" id="input12" value="<%=yearChart[11]%>">
+                </div>
+                <div >
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <canvas width="700px" id="myChart"></canvas>
+            
+            <!-- Sales Chart End -->
+
+
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                       
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                               
+                            </thead>
+
+                                </tr>
+                                
+                            </tbody> 
+                        </table>
+                    </div>
+                  </div>
+             
+          </div>
+          
+            </div>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin_assets/lib/chart/chart.min.js"></script>
+    <script src="/admin_assets/lib/easing/easing.min.js"></script>
+    <script src="/admin_assets/lib/waypoints/waypoints.min.js"></script>
+    <script src="/admin_assets/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/admin_assets/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/admin_assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/admin_assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+
+
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        const barChart = document.getElementById('barChart')
+       
+
+        
+        const input1 = Number(document.getElementById('input1').value)
+      
+        const input2 = Number(document.getElementById('input2').value)
+      
+        const input3 = Number(document.getElementById('input3').value)
+       
+        const input4 = Number(document.getElementById('input4').value)
+        
+        const input5 = Number(document.getElementById('input5').value)
+      
+        const input6 = Number(document.getElementById('input6').value)
+       
+        const input7 = Number(document.getElementById('input7').value)
+        const input8 = Number(document.getElementById('input8').value)
+        const input9 = Number(document.getElementById('input9').value)
+        const input10 = Number(document.getElementById('input10').value)
+        const input11 = Number(document.getElementById('input11').value)
+     
+        const input12 = Number(document.getElementById('input12').value)
+
+        new Chart(barChart, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'monthly sale report',
+                    data: [input1, input2, input3, input4, input5, input6, input7, input8, input9, input10, input11, input12],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+        
+        new Chart(ctx, {
+          
+            type: 'doughnut',
+            data: {
+                labels: ['COD', 'online'],
+                datasets: [{
+                    label: 'Payment Method',
+                    data: ['<%=cod%>', '<%=online%>'],
+                    backgroundColor: [
+                        'rgb(191, 191, 191)',
+                        'rgb(54, 162, 235)'
+                    ],
+                  
+                    hoverOffset: 4
+                }]
+            }
+        });
+        document.getElementById("1").classList.add("active") 
+
+
+
+  
+
+
+const paymenttype = document.getElementById("myChart");
+                  const cod=parseInt(document.getElementById("value").value)
+                  const online=parseInt(document.getElementById("value2").value)
+                  new Chart(paymenttype, {
+                    type: "doughnut",
+                    data: {
+                      labels: [ "Razorpay" ,"COD"],
+                      datasets: [
+                        {
+                          label: "",
+                          data: [ online, cod],
+                          backgroundColor: [
+                          "#00d25b","#ffab00"
+                          ],
+                          hoverOffset: 4,
+                        },
+                      ],
+                    },
+                  });
+
+                </script>
+  
+                
+        <%-include ('../layouts/adminfooter.ejs')%>
+
+

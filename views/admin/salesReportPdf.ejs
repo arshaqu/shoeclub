@@ -1,0 +1,99 @@
+<%-include ('../layouts/adminheader.ejs')%>
+
+<div class="col-lg-10 grid-margin stretch-card" >
+  <div class="card" >
+    <div class="card-body">
+      <h4 class="card-title" >Products</h4>
+      <form action="/admin/sortdate" method="post">
+        from <input required name="from" type="date" /> to
+        <input name="to" type="date" required />
+        <button class="btn btn-success btn-sm">search</button>
+        <a href="/admin/download?sort=<%=orderdetails%>"
+          ><button type="button" class="btn btn-danger btn-sm">
+            DOWNLOAD
+          </button></a
+        >
+      </form>
+     
+      <div class="table-responsive"  style="border-radius: 12px">
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+              <th>
+                ORDER ID
+              </th>
+              <th>
+                USER
+              </th>
+              <th>
+                PAYMENT TYPE
+               
+              </th>
+              <th>
+               STATUS
+
+              </th>
+              <th>
+                DATE OF PURCHASE
+
+              </th>
+              <th>
+                PRIZE
+
+              </th>
+              <th>
+                DELIVERY ADDRESS
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            tbody>
+            <%
+                  if(orderData.length>0){
+                    for(let i=0;i<orderData.length;i++){
+                        %>
+                          %>
+
+            <tr>
+             
+              
+              <td>
+                <%=orderData[i].userId%>
+              </td>
+             
+              <td>
+                <%=orderData[i].userName%>
+              </td>
+              <td>
+                <%=orderData[i].paymentMethod%>
+              </td>
+              <td>
+                <%=orderData[i].status%>
+              </td>
+              <td>
+                <%=orderData[i].date%>
+              </td>
+              <td>
+                <%=orderData[i].Amount%>
+              </td>
+              <td>
+                <%=orderData[i].deliveryAddress%>
+              </td>
+             
+            </tr>
+            <%
+          }
+        }else{
+          %>
+          <p style="color: white;padding: 30px;font-family: Georgia, 'Times New Roman', Times, serif;">Coupon Not Found</p>
+          <%
+        }
+        %>
+        
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%-include ('../layouts/adminfooter.ejs')%>
