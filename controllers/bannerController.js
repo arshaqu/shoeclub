@@ -3,7 +3,7 @@ const Banner = require('../models/bannerModel');
 // loading banner 
 const loadAddBanner = async (req,res)=>{
     try{
-        res.render('addbanner');
+        res.render('addBanner');
     }catch(error){
         console.log(error.message);
     }
