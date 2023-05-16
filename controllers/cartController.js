@@ -55,6 +55,7 @@ res.redirect('/admin/categorylist')
 //  loading the checkout page
  const loadcheckout = async (req,res)=>{
 try {
+    // const userData = await user.findone ({_id:req.session.user_id})
     const userName = await user.findOne ({_id:req.session.user_id});
     const addressData = await Address.findOne({userId:req.session.user_id});
     const total = await Cart.aggregate([{$match:{userName:userName.name}},{$unwind:"$products"},{$project:{productPrice:"$products.productPrice", cou:"$products.count"}},{$group:{_id:null,total:{$sum:{$multiply:["$productPrice","$cou"]}}}}])  
@@ -75,20 +76,28 @@ try {
                 }
             }else{
                 let customer = true;
-                res.render('emptyCheckoutPage',{customer,userName,message:"Add your delivery address"});
+                res.render('emptycheckout',{customer,userName,message:"Add your delivery address"});
             }
         }else{
             let customer = true;
-            res.render('emptyCheckoutPage',{customer,userName,message:"Add your delivery address"});
+            res.render('emptycheckout',{customer,userName,message:"Add your delivery address"});
         }
     }else{
         res.redirect('/');
     }
-    
 } catch (error) {
     console.log(error.message);
 }
  }
+
+//  Empty checkout page.....
+const emptyCheckout = async (req,res)=>{
+    try {
+        res.render('emptycheckout');
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 //  increasing and decreasing the count of the product
  const changeProductCount = async (req,res)=>{
@@ -121,5 +130,6 @@ try {
     loadCart,
     deleteCatagory,
     loadcheckout,
-    changeProductCount
+    changeProductCount,
+    emptyCheckout
  }

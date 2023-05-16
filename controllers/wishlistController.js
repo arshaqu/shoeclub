@@ -18,7 +18,7 @@ const wishlistLoad = async(req,res)=>{
                 res.redirect('/');
             }
         }else{
-            res.render('emptyWishlist',{message:"No product added to wishlist"});
+            res.render('emptywishlist',{message:"No product added to wishlist"});
         }
     } catch (error) {
         console.log(error.message);
@@ -112,9 +112,19 @@ const addfromwishlist = async (req,res)=>{
     }
 }
 
+//  Empty Wishlist....
+    const emptyWishlist = async (req,res)=>{
+        try {
+            res.render('emptyWishlist')
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
 module.exports={
     wishlistLoad,
     addToWishlist,
     removeWishlist,
-    addfromwishlist
+    addfromwishlist,
+    emptyWishlist
 }
