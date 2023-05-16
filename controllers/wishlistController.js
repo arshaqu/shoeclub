@@ -11,14 +11,18 @@ const wishlistLoad = async(req,res)=>{
         const userName = await User.findOne({_id:req.session.user_id});
         const wishlistData = await Wishlist.findOne({user:req.session.user_id}).populate("products.productId");
         const wish = wishlistData.products;
-        if(wish.length>0){
-            if(req.session.user_id){
-                res.render('wishlist',{userName,wish});
+        if(wishlistData){
+            if(wish.length>0){
+                if(req.session.user_id){
+                    res.render('wishList',{userName,wish});
+                }else{
+                    res.redirect('/');
+                }
             }else{
-                res.redirect('/');
+                res.render('emptyWishlist');
             }
         }else{
-            res.render('emptywishlist',{message:"No product added to wishlist"});
+            res.render('emptyWishlist')
         }
     } catch (error) {
         console.log(error.message);
@@ -112,19 +116,9 @@ const addfromwishlist = async (req,res)=>{
     }
 }
 
-//  Empty Wishlist....
-    const emptyWishlist = async (req,res)=>{
-        try {
-            res.render('emptyWishlist')
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-
 module.exports={
     wishlistLoad,
     addToWishlist,
     removeWishlist,
-    addfromwishlist,
-    emptyWishlist
+    addfromwishlist
 }

@@ -31,7 +31,6 @@ userRoute.get('/forget',Auth.isLogout,userController.forgetLoad);
 userRoute.get('/forget_verifiy',userController.forget_verifiy);
 userRoute.get('/page',Auth.isLogin,Auth.blocked,userController.loadShop);
 userRoute.get('/wishlist',Auth.isLogin,wishlistController.wishlistLoad);
-userRoute.get('/emptywishlist',Auth.isLogin,wishlistController.emptyWishlist);
 userRoute.get('/profile',Auth.isLogin,userController.loadProfile);
 userRoute.get('/checkout',Auth.isLogin,cartController.loadcheckout);
 userRoute.get('/emptycheckout',Auth.isLogin,cartController.emptyCheckout);
