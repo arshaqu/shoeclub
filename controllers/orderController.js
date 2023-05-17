@@ -54,8 +54,10 @@ const vieworderProducts = async (req,res)=>{
 //  In Admin side Showing the Orders 
 const adminShowOrder = async (req,res)=>{
     try {
+        const from= req.query.from
+        const to = req.query.to 
         const orderData = await Order.find({})
-        res.render('orderList',{orderData}) 
+        res.render('orderList',{orderData,from,to}) 
     } catch (error) {
         console.log(error.message);
     }
@@ -202,7 +204,7 @@ const exportOrder = async (req,res)=>{
  const sales = async (req,res)=>{
     try {
         const orderData = await Order.find({});
-        res.render('htmltopdf',{orderData})
+        res.render('htmltopdf',{orderData,from:'',to:''})
     } catch (error) {
         console.log(error.message);
     }
@@ -240,12 +242,17 @@ const salesReportPdf = async (req,res)=>{
 //  Soting the sales report as per date 
    const sortdate = async (req, res) => {
     try {
+        const limit = 2
       const from = req.body.from;
       const to = req.body.to;
       orderData = await Order
         .find({ status: { $ne: "CANCELED" }, date: { $gt: from, $lte: to } })
-        .sort({ date: -1 });
-      res.render("salesreport", { orderData });
+        .sort({ date: -1 }).limit(limit);
+     const   order = await Order
+        .find({ status: { $ne: "CANCELED" }, date: { $gt: from, $lte: to } })
+        .sort({ date: -1 })
+        const size= Math.ceil(order.length/limit)
+      res.render("salesreport", { orderData,from,to,size,id:'color1' });
     } catch (error) {
       console.log(error);
     }

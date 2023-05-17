@@ -1,20 +1,24 @@
 <%-include ('../layouts/adminheader.ejs')%>
 
-<div class="col-lg-10 grid-margin stretch-card" >
-  <div class="card" >
-    <div class="card-body">
-      <h4 class="card-title" >Products</h4>
-      <form action="/admin/sortdate" method="post">
-        from <input required name="from" type="date" /> to
-        <input name="to" type="date" required />
-        <button class="btn btn-success btn-sm">search</button>
+<div class="col-lg-10 m-3 grid-margin stretch-card" >
+  <div class="card " >
+    <div class="card-body  ">
+      <h4 class="card-title " >Products</h4>
+      <form action="/admin/sortdate" class="col-lg-4 col-md-5" method="post">
+        <label for="fromd">From:</label>
+            <input required name="from" id="fromd" type="date" class="form-control">
+            <label for="tod">To:</label>
+            <input id="tod" name="to" type="date" required class="form-control">
+        <button class="btn btn-success btn-sm m-3">search</button>
         <a href="/admin/download?sort=<%=orderData%>"
-          ><button type="button" class="btn btn-danger btn-sm">
+          ><button type="button" class="btn btn-danger btn-sm m-3">
             DOWNLOAD
           </button></a
         >
       </form>>
-     
+
+
+
       <div class="table-responsive"  style="border-radius: 12px">
         <table class="table table-striped" >
           <thead>
@@ -89,11 +93,60 @@
           <%
         }
         %>
-        
+        <input id="sdate"  value="<%=from%>" type="hidden">
+        <input id="edate"  value="<%=to%>" type="hidden">
           </tbody>
+        
         </table>
+        <div  style="text-align: center;" class="pagination">
+        <% for(let i=1;i<=size;i++){ %>
+         <span    > <a id="color<%=i%>" href="/admin/salesreport?page=<%=i%>&from=<%=from%>&to=<%=to%>&id=color<%=i%>" class="active"><span ><%=i%></span></a></span>
+          <%}%>
+          
+        <input type="hidden" id="highlight"  value="<%=id%>" >
+      
+        </div>
       </div>
     </div>
   </div>
+<style>
+  .actives{
+    background-color:#34B1AA; 
+    color: white;
+   
+   
+  }
+</style>
+
+  <script>
+   const id= document.getElementById('highlight').value || 'color1'
+   document.getElementById(id).classList.add('actives')
+  </script>
+
+  <style>
+    .pagination {
+      text-align: center;
+    }
+  
+    .pagination a {
+      display: inline-block;
+      width: 30px; /* Adjust the width as needed */
+      height: 30px; /* Adjust the height as needed */
+      line-height: 30px; /* Adjust the line-height as needed */
+      text-align: center;
+      border: 1px solid #000; /* Adjust the border styles as needed */
+      margin: 5px; /* Adjust the margin as needed */
+      text-decoration: none;
+    }
+  </style>
+
+  
 </div>
+<script>
+const sdate = document.getElementById('sdate').value
+const edate = document.getElementById('edate').value
+document.getElementById('fromd').value=sdate
+document.getElementById('tod').value=edate
+
+</script>
 <%-include ('../layouts/adminfooter.ejs')%>

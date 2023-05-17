@@ -167,15 +167,52 @@ const logout = async (req,res)=>{
   // Sale report of the sales
 const salesReport = async (req, res) => {
   try {
-      const orderData = await Order.find({ status: { $ne: "canceled" } }).sort({ date: -1 })
-      res.render("salesReport", { orderData })
+    const limit=3
+const from= req.query.from
+const to = req.query.to
+const page= req.query.page || 1
+const stx= (page-1)*limit
+const id = req.query.id
+const orderData = await Order.find({ status: { $ne: "canceled" } }).sort({ date: -1 })
+const size = Math.ceil( orderData.length/limit)
+if(from){
+  const orderData = await Order.find({date:{$gte:from,$lte:to},status:{$ne:'canceled'} }).sort({ date: -1 }).skip(stx).limit(limit)
+  res.render("salesReport", { orderData ,from,to,size,id })
+}else{
+  const orderData = await Order.find({ status: { $ne: "canceled" } }).sort({ date: -1 }).skip(stx).limit(limit)
+  res.render("salesReport", { orderData ,from,to,size,id})
+}
+
+
+
+    
   } catch (error) {
       console.log(error.message);
      
   }
 }
 
-
+const sorteddate = async (req, res) => {
+  try {
+      const limit = 6
+    const fromm = req.body.from;
+    const too = req.body.to;
+    orderData = await Order
+      .find({ status: { $ne: "CANCELED" }, date: { $gt: fromm, $lte: too } })
+      .sort({ date: -1 }).limit(limit);
+   const   order = await Order
+      .find({ status: { $ne: "CANCELED" }, date: { $gt: fromm, $lte: too } })
+      .sort({ date: -1 })
+      const size= Math.ceil(order.length/limit)
+      if(orderData){
+    res.render("orderList", { orderData,fromm,too });
+      }else{
+        console.log(orderData);
+      }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 
@@ -189,5 +226,6 @@ const salesReport = async (req, res) => {
     listusers,
     logout,
     salesReport,
+    sorteddate
   
  }

@@ -72,6 +72,7 @@ adminRoute.post('/editBanner',bannerController.SaveBanner);
 adminRoute.post('/editOrder',orderController.saveEditOrder);
 adminRoute.post('/addBanner',upload.upload.single('image'),bannerController.addBanner);
 adminRoute.post('/sortdate',orderController.sortdate);
+adminRoute.post('/sorteddate',adminController.sorteddate);
 adminRoute.post('/removeimg',productController.removeImg)
 
 

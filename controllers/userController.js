@@ -271,7 +271,7 @@ else{
 //  Shop page 
 const loadShop = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 2;
+        const page = parseInt(req.query.page) ||1;
         const limit = parseInt(req.query.limit) || 6;
         const skip = (page - 1) * limit;
         const data = await Category.find()

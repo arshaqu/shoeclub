@@ -5,6 +5,15 @@
     <div class="card-body">
       <h4 class="card-title" >Orders</h4>
 
+      <form action="/admin/sorteddate" class="col-lg-4 col-md-5" method="post">
+        <label for="fromd">From:</label>
+            <input required name="from" id="fromd" type="date" class="form-control">
+            <label for="tod">To:</label>
+            <input id="tod" name="to" type="date" required class="form-control">
+        <button class="btn btn-success btn-sm m-3">search</button>
+        
+      </form>>
+
        <div class="" style="margin-left: 900px; height: 40px;">
         <a style="color: white;    background-color: #013757;border-radius: 10px;padding: 10px 20px;" href="/admin/exportOrder">Export Data</a>
         <a style="color: white;  background-color: #013757;border-radius: 10px;padding: 10px 20px;" href="/admin/exportOrderPDF">Export Data PDF</a>
@@ -61,4 +70,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  const stdate = document.getElementById('stdate').value
+  const endate = document.getElementById('endate').value
+  document.getElementById('fromda').value=sdate
+  document.getElementById('toda').value=edate
+  
+  </script>
+  
+
 <%-include ('../layouts/adminfooter.ejs')%>
