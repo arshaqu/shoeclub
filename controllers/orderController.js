@@ -252,7 +252,7 @@ const salesReportPdf = async (req,res)=>{
         .find({ status: { $ne: "CANCELED" }, date: { $gt: from, $lte: to } })
         .sort({ date: -1 })
         const size= Math.ceil(order.length/limit)
-      res.render("salesreport", { orderData,from,to,size,id:'color1' });
+      res.render("salesReport", { orderData,from,to,size,id:'color1' });
     } catch (error) {
       console.log(error);
     }
